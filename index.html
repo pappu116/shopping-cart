@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item" id="card-removeOne">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default"><i class="fas fa-minus" id="minus1"></i></button>
+                           <input id="sectionOne" type="text" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i class="fas fa-plus" id="addItem1"></i></button>
+                        </div>
+                        <h5>$<span id="sectionOne-total"> 1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item" id="remove-btnTwo">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item" id="card-remove">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default"><i class="fas fa-minus" id="minus"></i></button>
+                           <input id="sectionTwo"  type="text" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i class="fas fa-plus" id="addItem" ></i></button>
+
+                        </div>
+                        <h5>$<span id="sectionTwo-total"> 59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item" id="remove-btn">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="grand-total">1,278</span> </h5>
+                        <h5>$0</h5>
+                        <h5>$ <span id="grand-totalAmount">1,278</span> </h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script> 
+  
+         
+
+ // remove handler area
+    const removeBtnTwo=document.getElementById("remove-btnTwo");
+    removeBtnTwo.addEventListener('click', function(){
+        const removeArea = document.getElementById('card-removeOne');
+        removeArea.style.display = "none";})
+      
+      
+        remove("removeBtn");
+   function remove(id){
+   const removeBtn = document.getElementById("remove-btn");
+   removeBtn.addEventListener('click', function(){
+        const removeArea = document.getElementById('card-remove');
+        removeArea.style.display = "none";})
+   }
+
+//math matical area
+
+const $sectionOne = document.getElementById('sectionOne');
+const $sectionOneTotal = document.getElementById('sectionOne-total');
+const $sectionTwo = document.getElementById('sectionTwo');
+const $sectionTwoTotal = document.getElementById('sectionTwo-total');
+const $grandTotal = document.getElementById('grand-total');
+const grandTotalAmount=document.getElementById("grand-totalAmount");
+
+
+function itemOne (v) { return 1219* v }
+function itemTwo (v) { return 59 * v}
+
+$sectionOne.addEventListener('change', function() {
+  $sectionOneTotal.textContent = itemOne($sectionOne.value);
+  $grandTotal.textContent = itemOne($sectionOne.value) +itemTwo($sectionTwo.value);
+  grandTotalAmount.textContent=itemOne($sectionOne.value) +itemTwo($sectionTwo.value);
+})
+$sectionTwo.addEventListener('change', function() {
+  $sectionTwoTotal.textContent =itemTwo($sectionTwo.value)
+  $grandTotal.textContent = itemOne($sectionOne.value) +itemTwo($sectionTwo.value)
+  grandTotalAmount.textContent=itemOne($sectionOne.value) +itemTwo($sectionTwo.value);
+})
+
+
+      // // click Handler one
+
+      const addItem1= document.getElementById("addItem1");
+      addItem1.addEventListener("click",function(){
+    $sectionOneTotal.innerText = itemOne(1+sectionOne.value++);
+    $grandTotal.innerText = itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+    grandTotalAmount.innerText=itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+      });
+
+      //handler One minus area
+      const minus1= document.getElementById("minus1");
+      minus1.addEventListener("click",function(){
+    $sectionOneTotal.innerText = itemOne(1-sectionOne.value--);
+    $grandTotal.innerText = itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+    grandTotalAmount.innerText=itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+      });
+    //click handler two pluse area
+   
+    const addItem= document.getElementById("addItem");
+      addItem.addEventListener("click",function(){
+    $sectionTwoTotal.innerText = itemTwo(1+sectionTwo.value++);
+    $grandTotal.innerText = itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+    grandTotalAmount.innerText=itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+      });
+
+      // click handler two minus area
+      const minus= document.getElementById("minus");
+      minus.addEventListener("click",function(){
+    $sectionTwoTotal.innerText = itemTwo(1-sectionTwo.value--);
+    $grandTotal.innerText = itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+    grandTotalAmount.innerText=itemOne($sectionOne.value)+itemTwo($sectionTwo.value);
+      });
+
+      
+   </script>
+</body>
+
+</html>

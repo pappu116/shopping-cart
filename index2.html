@@ -1,0 +1,53 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="number" id="apples">
+<p>Apples total: <span id="apples-total">0</span></p>
+<input type="number" id="bananas">
+<p>Bananas total: <span id="bananas-total">0</span></p>
+<p>Grand total: <span id="grand-total">0</span></p>
+
+<script>
+    var $apples = document.getElementById('apples')
+var $applesTotal = document.getElementById('apples-total')
+var $bananas = document.getElementById('bananas')
+var $bananasTotal = document.getElementById('bananas-total')
+var $grandTotal = document.getElementById('grand-total')
+
+function apple (v) { return 50 * v }
+function banana (v) { return 30 * v}
+
+$apples.addEventListener('change', function() {
+  $applesTotal.textContent = apple($apples.value)
+  $grandTotal.textContent = apple($apples.value) + banana($bananas.value)
+})
+$bananas.addEventListener('change', function() {
+  $bananasTotal.textContent = banana($bananas.value)
+  $grandTotal.textContent = apple($apples.value) + banana($bananas.value)
+})
+</script>
+</body>
+</html> -->
+
+<html>
+<head>
+    <title>Space Clicker</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var clicks = 0;
+    function onClick() {
+        clicks += 1;
+        document.getElementById("clicks").innerHTML = clicks;
+    };
+    </script>
+    <button type="button" onClick="onClick()">Click me</button>
+    <p>Clicks: <a id="clicks">0</a></p>
+
+</body></html>
